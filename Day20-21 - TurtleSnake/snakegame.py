@@ -34,6 +34,7 @@ while game_is_on:
         food.refresh()
         scoreboard.increase_score()
         scoreboard.refresh()
+        snake.extend_snake()
 
     #detect collistion with wall
     if abs(snake.head.xcor()) > 280 or abs(snake.head.ycor()) > 280:
