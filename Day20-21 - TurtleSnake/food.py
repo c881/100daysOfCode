@@ -7,9 +7,9 @@ class Food(Turtle):
         self.color("orange")
         self.shapesize(0.5)
         self.penup()
-        self.move()
+        self.refresh()
 
 
-    def move(self):
+    def refresh(self):
         self.setx(r.randint(-280, 280))
         self.sety(r.randint(-280, 280))
