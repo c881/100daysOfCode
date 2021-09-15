@@ -1,15 +1,18 @@
-import snake as s
-from turtle import Screen
-import random as ran
+from snake import Snake
+from food import Food
 import time as ti
+from turtle import Screen
+# import random as ran
+
 
 screen = Screen()
 # Screen Setup
-screen.setup(width=600,height=600)
+screen.setup(width=600, height=600)
 screen.bgcolor('black')
 screen.title("My Snake Game")
 screen.tracer(0)
-snake = s.Snake()
+snake = Snake()
+food = Food()
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -19,11 +22,12 @@ screen.onkey(snake.right, "Right")
 
 game_is_on = True
 while game_is_on:
-    screen.update()
-    ti.sleep(0.3)
-    # From last segment to the first(not included), move forward over the segment before you
-    # Then move the first segment by 20
+    ti.sleep(0.1)
     snake.move()
+    screen.update()
+    if snake.head.distance(food) < 15:
+        food.move()
+
 
 
 screen.exitonclick()
