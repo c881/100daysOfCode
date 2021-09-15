@@ -35,6 +35,10 @@ while game_is_on:
         scoreboard.increase_score()
         scoreboard.refresh()
 
+    #detect collistion with wall
+    if abs(snake.head.xcor()) > 280 or abs(snake.head.ycor()) > 280:
+        game_is_on = False
+        scoreboard.game_over()
 
 
 screen.exitonclick()
