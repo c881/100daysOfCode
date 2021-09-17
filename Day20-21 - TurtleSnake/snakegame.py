@@ -25,8 +25,8 @@ screen.onkey(snake.right, "Right")
 
 game_is_on = True
 while game_is_on:
-    screen.update()
     ti.sleep(0.1)
+    screen.update()
     snake.move()
     scoreboard.write_score()
 
