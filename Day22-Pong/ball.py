@@ -19,10 +19,14 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_move *= -1
-        if self.x_move > 0:
+        if self.x_move > 20:
+            self.x_move += 1
+        elif self.x_move > 10:
             self.x_move += 2
+        elif self.x_move < -20:
+            self.x_move -= 1
         else:
-            self.x_move -=2
+            self.x_move -= 2
 
     def reset_position(self):
         self.bounce_x()
