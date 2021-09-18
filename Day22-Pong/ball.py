@@ -19,7 +19,15 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_move *= -1
+        if self.x_move > 0:
+            self.x_move += 2
+        else:
+            self.x_move -=2
 
     def reset_position(self):
         self.bounce_x()
+        if self.x_move > 0:
+            self.x_move = 10
+        else:
+            self.x_move = -10
         self.home()

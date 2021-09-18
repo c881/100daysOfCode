@@ -1,12 +1,12 @@
 from turtle import Turtle
 
 ALIGNMENT = "center"
-FONT = ("Arial", 18, "normal")
+FONT = ("Arial", 24, "normal")
 
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
-        self.goto(0, 270)
+        self.goto(0, 260)
         self.color("white")
         self.score_l = 0
         self.score_r = 0
@@ -14,13 +14,13 @@ class Scoreboard(Turtle):
 
 
     def write_score(self):
-        self.write(arg=f"{self.score_l}  {self.score_r} ", align=ALIGNMENT, font=FONT)
+        self.write(arg=f"{self.score_l}\t\t\t{self.score_r} ", align=ALIGNMENT, font=FONT)
 
 
-    def increase_score_l(self):
+    def point_l(self):
         self.score_l += 1
 
-    def increase_score_r(self):
+    def point_r(self):
         self.score_r += 1
 
 
