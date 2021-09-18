@@ -1,10 +1,5 @@
 from turtle import Turtle
 
-RIGHT = 0
-UP = 90
-LEFT = 180
-DOWN = 270
-
 class Ball(Turtle):
     def __init__(self):
         super().__init__()
@@ -15,5 +10,10 @@ class Ball(Turtle):
         self.speed("fastest")
         self.setheading(45)
 
-    def move(self):
-        self.forward(20)
+    def move(self, x, y):
+        new_x = self.xcor() + x
+        new_y = self.ycor() + y
+        self.goto(new_x, new_y)
+
+    def go_home(self):
+        self.goto(0,0)
