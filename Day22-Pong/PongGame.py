@@ -27,7 +27,7 @@ while game_is_on:
     time.sleep(0.1)
     screen.update()
     # Ball hit Top/Bottom screen
-    if abs(ball.ycor()) > 300:
+    if abs(ball.ycor()) > 280:
         ball.bounce_y()
     if 380 > abs(ball.xcor()) > 330:
         if ball.distance(r_paddle) < 50 or ball.distance(l_paddle) < 50:
