@@ -3,27 +3,25 @@ from paddle import Paddle
 import time
 
 screen = Screen()
-
+screen.title("Pong")
 screen.setup(width=800, height=600)
 screen.bgcolor("black")
 screen.tracer(0)
 
-pong1 = Paddle(350)
-pong2 = Paddle(-350)
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
 
 
 screen.listen()
-screen.onkey(pong1.up, "Up")
-screen.onkey(pong1.down, "Down")
-screen.onkey(pong2.up, "w")
-screen.onkey(pong2.down, "x")
+screen.onkey(r_paddle.up, "Up")
+screen.onkey(r_paddle.down, "Down")
+screen.onkey(l_paddle.up, "w")
+screen.onkey(l_paddle.down, "s")
 
 game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
-    pong1.move()
-    pong2.move()
-
+r_paddle.onclick()
 
 screen.exitonclick()
