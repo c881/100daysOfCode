@@ -8,7 +8,7 @@
 #Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
 
 with open("Input/Names/invited_names.txt", "r") as inv_names:
-    names = [name[:-1] for name in inv_names.readlines()]
+    names = [name.strip() for name in inv_names.readlines()]
 
 with open("Input/Letters/starting_letter.txt", "r") as letter:
     # lines = [line for line in letter.readlines()]
@@ -16,7 +16,7 @@ with open("Input/Letters/starting_letter.txt", "r") as letter:
 
 for name in names:
     new_letter = letter_cont.replace("[name]", name)
-    with open(f"Output/ReadyToSend/letter_for_{name}", "w") as out_letter:
+    with open(f"Output/ReadyToSend/letter_for_{name}.txt", "w") as out_letter:
         out_letter.write(new_letter)
 # for name in names:
 #     new_letter = [line.replace("[name]", name) for line in lines]
