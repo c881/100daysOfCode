@@ -21,3 +21,19 @@
 import pandas
 data = pandas.read_csv("weather_data.csv")
 print(data)
+# print the average temperature
+print(data["temp"].mean())
+# print the highest temperature
+print(data["temp"].max())
+
+# print the raw with the highest temperature
+print(data[data.temp == data.temp.max()])
+print(data[data["temp"] == data["temp"].max()])
+# data_temp_list = data["temp"].to_list()
+
+# convert Monday temperature from C to F
+monday = data[data.day == "Monday"]
+c_to_f = monday.temp * 9 / 5 + 32
+print(c_to_f)
+
+# print(sum(data_temp_list) / len(data_temp_list))
