@@ -16,8 +16,8 @@
 #     print(temperature)
 #
 #
-#
-
+# PyArrow - to deal with parquet files
+import pyarrow
 import pandas
 data = pandas.read_csv("weather_data.csv")
 print(data)
@@ -33,7 +33,19 @@ print(data[data["temp"] == data["temp"].max()])
 
 # convert Monday temperature from C to F
 monday = data[data.day == "Monday"]
-c_to_f = monday.temp * 9 / 5 + 32
-print(c_to_f)
+monday_temp_f = monday.temp * 9 / 5 + 32
+print(monday_temp_f)
 
+# dataframe from scratch
+data_dict = {"students": ["Jack", "Amy", "Josh"],
+             "grades": [72, 82, 75]}
+data_frame = pandas.DataFrame(data_dict)
+print(data_frame)
 # print(sum(data_temp_list) / len(data_temp_list))
+
+##squirl_data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+# size difference between csv and parquet - 70%
+##squirl_data.to_parquet("2018_central.parquet")
+##squirl_data_p = pandas.read_parquet("2018_central.parquet")
+##print(squirl_data_p[1:5])
+
