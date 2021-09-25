@@ -50,12 +50,22 @@ operations = {
     '/': div,
     '^': pow
 }
+should_continue = True
+print(art.logo)
+num1 = float(input("what is your first number: "))
 
-num1 = int(input("what is your first number: "))
-num2 = int(input("what is your next number: "))
-for symbol in operations:
-    print(symbol)
-symbol = input("what is the operation you want to use: ")
-if symbol in operations:
-    print(f"{num1} {symbol} {num2} = {operations[symbol](num1, num2)}")
+while should_continue:
+    for symbol in operations:
+        print(symbol, end=" ")
+    print("")
+    symbol = input("Pick an operation: ")
+    num2 = float(input("what is your next number: "))
+
+    if symbol in operations:
+        answer = operations[symbol](num1, num2)
+        print(f"{num1} {symbol} {num2} = {answer}")
+        if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to exit.: ") in ('y', 'Y'):
+            num1 = answer
+        else:
+            should_continue = False
 
