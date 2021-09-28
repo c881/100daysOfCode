@@ -43,22 +43,21 @@
 # print(data_frame)
 # print(sum(data_temp_list) / len(data_temp_list))
 
-##squirl_data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
+# # squirl_data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
 # size difference between csv and parquet - 70%
-##squirl_data.to_parquet("2018_central.parquet")
-##squirl_data_p = pandas.read_parquet("2018_central.parquet")
-##print(squirl_data_p[1:5])
+# # squirl_data.to_parquet("2018_central.parquet")
+# # squirl_data_p = pandas.read_parquet("2018_central.parquet")
+# # print(squirl_data_p[1:5])
 
 import pandas as pd
 squirrel_data = pd.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
 
 print(squirrel_data["Primary Fur Color"].value_counts())
-squirrel_dict= {"Fur Colours":[x for x in squirrel_data["Primary Fur Color"].unique()[1:]],
-                "Count":[]}
+squirrel_dict = {"Fur Colours": [x for x in squirrel_data["Primary Fur Color"].unique()[1:]],
+                 "Count": []}
 for value in squirrel_data["Primary Fur Color"].value_counts():
     squirrel_dict["Count"].append(value)
 # squirrl_df = pd.DataFrame(squirrel_data["Primary Fur Color"].value_counts())   # pd.DataFrame(squirrel_dict)
 squirrl_df = pd.DataFrame(squirrel_dict)
 print(squirrl_df)
 squirrl_df.to_csv("2018_fur.csv")
-
