@@ -36,7 +36,7 @@ while len(guessed_states) < len(all_states) and answer != None:
 #
 # states_to_learn = pandas.DataFrame(list(all_states ^ guessed_states))
 
-states_to_learn = [state for state in all_states if state not in guessed_states]
+states_to_learn = pandas.DataFrame([state for state in all_states if state not in guessed_states])
 states_to_learn.to_csv("states_to_learn.csv")
 
 # if answer in states:
