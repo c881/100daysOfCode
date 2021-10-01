@@ -31,10 +31,12 @@ while len(guessed_states) < len(all_states) and answer != None:
             tim.goto(int(state_data.x), int(state_data.y))
             tim.write(answer)
 
-all_states = set(all_states)
-guessed_states = set(guessed_states)
+# all_states = set(all_states)
+# guessed_states = set(guessed_states)
+#
+# states_to_learn = pandas.DataFrame(list(all_states ^ guessed_states))
 
-states_to_learn = pandas.DataFrame(list(all_states ^ guessed_states))
+states_to_learn = [state for state in all_states if state not in guessed_states]
 states_to_learn.to_csv("states_to_learn.csv")
 
 # if answer in states:
