@@ -18,7 +18,7 @@ my_button = tk.Button(text="Click me!", command=button_clicked)
 my_button.pack()
 
 # Entry
-user_input = tk.Entry(textvariable="hello there!")
+user_input = tk.Entry(textvariable="hello there!", width='20')
 user_input.pack()
 
 
