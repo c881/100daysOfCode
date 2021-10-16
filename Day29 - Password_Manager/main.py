@@ -67,6 +67,25 @@ def save():
 def find_password():
     website = website_entry.get()
     email = email_entry.get()
+    try:
+        with open("data.json", "r") as data_file:
+            # Get old data
+            data = json.load(data_file)
+    except FileNotFoundError:
+        # Opening file to write create an empty file.
+        # Then, add new data.
+        pass
+    else:
+        requested_data = data.get(website, None)
+        if requested_data != None and requested_data['email'] == email:
+            print(f"site = {website},\n password = {requested_data['password']}")
+        else:
+            print("I don't have a password to that site, to that email")
+
+    finally:
+        # Clear screen
+        website_entry.delete(0, END)
+        password_entry.delete(0, END)
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
