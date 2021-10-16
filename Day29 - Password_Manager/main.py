@@ -5,10 +5,13 @@ import pyperclip
 import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+# Password Generator Project
 
-#Password Generator Project
+
 def generate_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+               'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+               'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
@@ -24,12 +27,14 @@ def generate_password():
     pyperclip.copy(password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+
+
 def save():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
     new_data = {
-        website:{
+        website: {
             "email": email,
             "password": password,
         }
@@ -46,24 +51,26 @@ def save():
         #         website_entry.delete(0, END)
         #         password_entry.delete(0, END)
         try:
-            with open("data.json","r") as data_file:
+            with open("data.json", "r") as data_file:
                 # Get old data
                 data = json.load(data_file)
         except FileNotFoundError:
             # Opening file to write create an empty file.
             # Then, add new data.
-            with open("data.json","w") as data_file:
+            with open("data.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
         else:
             # Add new data
             data.update(new_data)
-            with open("data.json", "w") as data_file:
+            with open("data1.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         finally:
-            #Clear screen
+            # Clear screen
             website_entry.delete(0, END)
             password_entry.delete(0, END)
-# ---------------------------- find PASSWORD ------------------------------- #
+# ---------------------------- FIND PASSWORD ------------------------------- #
+
+
 def find_password():
     website = website_entry.get()
     email = email_entry.get()
@@ -72,21 +79,23 @@ def find_password():
             # Get old data
             data = json.load(data_file)
     except FileNotFoundError:
+        messagebox.showerror(title="File Missing", message="It seem you haven't saved any password yet")
+        # askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} "
+        #                                               f"\nPassword: {password} \nIs it ok to save?")
         # Opening file to write create an empty file.
         # Then, add new data.
-        pass
     else:
         requested_data = data.get(website, None)
-        if requested_data != None and requested_data['email'] == email:
-            print(f"site = {website},\n password = {requested_data['password']}")
+        if requested_data is not None and requested_data['email'] == email:
+            messagebox.showinfo(title=f"{website}", message=f"password = {requested_data['password']}")
         else:
-            print("I don't have a password to that site, to that email")
-
+            messagebox.showerror(title="No Password 4 Site", message="It seem you don't have a password to this site")
     finally:
         # Clear screen
         website_entry.delete(0, END)
         password_entry.delete(0, END)
 # ---------------------------- UI SETUP ------------------------------- #
+
 
 window = Tk()
 window.title("Password Manager")
@@ -97,7 +106,7 @@ logo_img = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=logo_img)
 canvas.grid(row=0, column=1)
 
-#Labels
+# Labels
 website_label = Label(text="Website:", width=20)
 website_label.grid(row=1, column=0)
 email_label = Label(text="Email/Username:", width=20)
@@ -105,9 +114,9 @@ email_label.grid(row=2, column=0)
 password_label = Label(text="Password:", width=20)
 password_label.grid(row=3, column=0)
 
-#Entries
+# Entries
 website_entry = Entry(width=25)
-website_entry.grid(row=1, column=1) #, columnspan=2)
+website_entry.grid(row=1, column=1)  # , columnspan=2)
 website_entry.focus()
 email_entry = Entry(width=47)
 email_entry.grid(row=2, column=1, columnspan=2)
@@ -116,11 +125,11 @@ password_entry = Entry(width=25)
 password_entry.grid(row=3, column=1)
 
 # Buttons
-search_button = Button(text="Search", width=20 , command=find_password)
-search_button.grid(row=1,column=2)
+search_button = Button(text="Search", width=20, command=find_password)
+search_button.grid(row=1, column=2)
 generate_password_button = Button(text="Generate Password", width=20, command=generate_password)
 generate_password_button.grid(row=3, column=2)
 add_button = Button(text="Add", width=25, command=save)
-add_button.grid(row=4, column=1) #, columnspan=2)
+add_button.grid(row=4, column=1)  # , columnspan=2)
 
 window.mainloop()
