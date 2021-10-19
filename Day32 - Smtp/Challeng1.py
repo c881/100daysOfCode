@@ -1,4 +1,11 @@
+import datetime as dt
 import smtplib, ssl
+WEEKDAYS = {0: 'Monday', 1: 'Tuesday', 2: 'Wednesday', 3: 'Thursday', 4:'Friday', 5:'Saturday', 6:'Sunday'}
+
+# print (WEEKDAYS[dt.datetime.weekday(dt.datetime.now())])
+quates = {}
+with open("quotes.txt", "r") as file:
+    lines = file.readlines()
 
 smtp_server = "smtp.gmail.com"
 port = 587  # For starttls
