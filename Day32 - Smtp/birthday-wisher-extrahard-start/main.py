@@ -17,7 +17,6 @@ def send_mail(message1):
     # Like with files, using with to auto close the connection
     with smtplib.SMTP(smtp_server, port) as server:
         try:
-            # server = smtplib.SMTP(smtp_server,port)
             server.starttls(context=context)  # Secure the connection
             server.login(sender_email, password)
             server.sendmail(from_addr=sender_email,
@@ -27,23 +26,21 @@ def send_mail(message1):
             # Print any error messages to stdout
             print(e)
 
-# 1. Update the birthdays.csv
-
-# 2. Check if today matches a birthday in the birthdays.csv
 
 today = dt.datetime.now()
-
+# today_mmdd = (today.month, today.day)
 birthdate_data = pd.read_csv("birthdays.csv")
-birth_dict = {row[1][0]: {"email": row[1][1],
-                         "month": row[1][3],
-                         "day":row[1][4]} for row in birthdate_data.iterrows()}
-for item in birth_dict.items():
-    # print(item[1]['email'])
-    if today.month == item[1]["month"] and today.day == item[1]["day"]:
+birth_dict = birthdate_data.to_dict(orient="records")
+# birth_dict = {index: row for (index, row) in birthdate_data.iterrows()}
+# print(birth_dict2)
+# print(birth_dict)
+for row in birth_dict:
+    if today.month == row["month"] and today.day == row["day"]:
         with open(f"letter_templates/letter_{rd.randint(1, 4)}.txt") as letter:
             letter_cont = letter.read()
-        letter_cont = letter_cont.replace("[NAME]", item[0])
-        send_mail(letter_cont)
+            letter_cont = letter_cont.replace("[NAME]", row["name"])
+            print(f"got {row['name']}")
+            send_mail(letter_cont)
 
 
 
