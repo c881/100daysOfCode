@@ -1,0 +1,2 @@
+CONSUMER_KEY = 'jacov.g@gmail.com'
+CONSUMER_SECRET = '20082010N'
