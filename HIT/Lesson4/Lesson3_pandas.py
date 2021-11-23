@@ -1,7 +1,9 @@
-import matplotlib as mpl
-from matplotlib import pyplot as plt
+# import matplotlib as mpl
+# from matplotlib import pyplot as plt
+
 
 import pandas as pd
+from scipy.stats import pearsonr
 
 df = pd.read_csv("Bike_sharing_data.csv")
 # print(df.temp)
@@ -13,13 +15,17 @@ df = pd.read_csv("Bike_sharing_data.csv")
 # ממשיכים עם סטטיסטיקה - משתנה רציף - נחתוך ל - X טווחים
 # כל טווח נרשם כערך תחתון ועליון שלו ומספר המופעים
 # ומנורמל
-print(pd.cut(df.temp, bins=5).value_counts())
-print(pd.cut(df.temp, bins=5).value_counts(normalize=True))
+## print(pd.cut(df.temp, bins=5).value_counts())
+##print(pd.cut(df.temp, bins=5).value_counts(normalize=True))
 
 # matplotlib.inline
 # plt.hist(df.temp, bins=5)
 
 # הפקודה describe - מחשבת מדדים על עמודה
-print(df.cnt.describe())
-print(pd.cut((df.cnt), bins=5).value_counts())
-print(df.casual.describe())
+##print(df.cnt.describe())
+##print(pd.cut((df.cnt), bins=5).value_counts())
+##print(df.casual.describe())
+
+df = pd.read_csv("lsn4.csv")
+print(df.age.describe())
+print(pearsonr(df.age, df.final))
