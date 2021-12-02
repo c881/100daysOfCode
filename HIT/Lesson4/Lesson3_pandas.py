@@ -26,6 +26,10 @@ df = pd.read_csv("Bike_sharing_data.csv")
 # #print(pd.cut((df.cnt), bins=5).value_counts())
 # #print(df.casual.describe())
 
-df = pd.read_csv("lsn4.csv")
-print(df.age.describe())
-print(pearsonr(df.age, df.final))
+# df = pd.read_csv("lsn4.csv")
+# print(df.age.describe())
+# print(pearsonr(df.age, df.final))
+
+df = pd.read_csv("test.csv")
+print(df[df.blue == 1].shirt)
+print(df[df.blue == 1].shirt.value_counts())
