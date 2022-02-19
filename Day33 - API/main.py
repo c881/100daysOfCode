@@ -1,6 +1,7 @@
 """Trying to call the International Space Station(ISS) API for the current ISS Location.
 	Day33 of the course '100 Days of code'
 	"""
+from datetime import datetime
 import requests
 import time
 
@@ -22,4 +23,6 @@ parameters = {
 	"formatted": 0}
 response = requests.get(url="https://api.sunrise-sunset.org/json", params=parameters)
 data = response.json()
-print(f'sunrise: {data["results"]["sunrise"].split("T")}\nsubset: {data["results"]["sunset"].split("T")}' )
+print(f'sunrise: {data["results"]["sunrise"].split("T")[1].split(":")[0]}\nsubset: {data["results"]["sunset"].split("T")}' )
+#print(time.)
+print(datetime.now.hour)
