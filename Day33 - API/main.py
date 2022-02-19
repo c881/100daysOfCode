@@ -23,6 +23,8 @@ parameters = {
 	"formatted": 0}
 response = requests.get(url="https://api.sunrise-sunset.org/json", params=parameters)
 data = response.json()
-print(f'sunrise: {data["results"]["sunrise"].split("T")[1].split(":")[0]}\nsubset: {data["results"]["sunset"].split("T")}' )
-#print(time.)
+sunrise_hour = data["results"]["sunrise"].split("T")[1].split(":")[0]
+sunset_hour = data["results"]["sunset"].split("T")[1].split(":")[0]
+print(f'sunrise: {sunrise_hour}\nsubset: {sunset_hour}')
+# print(time.)
 print(datetime.now.hour)
