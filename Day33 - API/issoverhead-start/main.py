@@ -8,8 +8,6 @@ smtp_server = "smtp.gmail.com"
 port = 587  # For starttls
 
 
-
-
 def is_iss_overhead():
     response = requests.get(url=ISS_END_POINT)
     response.raise_for_status()
@@ -17,7 +15,7 @@ def is_iss_overhead():
 
     iss_latitude = float(data["iss_position"]["latitude"])
     iss_longitude = float(data["iss_position"]["longitude"])
-    return (abs(iss_latitude - MY_LAT) < 5) and (abs(iss_longitude - MY_LONG))
+    return (abs(iss_latitude - MY_LAT) <= 5) and (abs(iss_longitude - MY_LONG) <= 5)
 
 
 def is_it_night():
