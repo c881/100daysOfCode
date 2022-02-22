@@ -41,7 +41,7 @@ while True:
     if is_it_night() and is_iss_overhead():
         with smtplib.SMTP(smtp_server, port) as server:
             try:
-                server.starttls(context=context)  # Secure the connection
+                server.starttls()  # context=context)  # Secure the connection
                 server.login(sender_email, sender_pass)
                 server.sendmail(from_addr=sender_email, to_addrs="jacov.g@gmail.com", msg=message)
             except Exception as e:
