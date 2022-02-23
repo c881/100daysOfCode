@@ -9,7 +9,8 @@ for quest in question_data:
     questions_bank.append(Question(quest["text"], quest["answer"]))
 
 quiz = QuizBrain(questions_bank)
-
+counter = 0
 while quiz.still_has_questions():
-    quiz.next_question()
+    counter += quiz.next_question()
+print(f'Congratulation, you got {counter} right answers')
 
