@@ -9,16 +9,20 @@ port = 587  # For starttls
 
 
 def is_iss_overhead():
+    """Getting the ISS current position and check is it overhead
+    (distance of 5 degrees from my home position)"""
     response = requests.get(url=ISS_END_POINT)
     response.raise_for_status()
     data = response.json()
 
     iss_latitude = float(data["iss_position"]["latitude"])
     iss_longitude = float(data["iss_position"]["longitude"])
-    return (abs(iss_latitude - MY_LAT) <= 5) and (abs(iss_longitude - MY_LONG) <= 5)
+    return (abs(iss_latitude - MY_LAT) + abs(iss_longitude - MY_LONG)) <= 5
 
 
 def is_it_night():
+    """Testing if it's nighttime by comparing my current hour
+    to the hours of sunset/sunrise in my area, by API"""
     parameters = {
         "lat": MY_LAT,
         "lng": MY_LONG,
