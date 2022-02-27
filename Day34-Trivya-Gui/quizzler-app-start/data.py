@@ -10,6 +10,7 @@ response = requests.get(url,params=params)
 # print(response.content)
 
 question_data = response.json()["results"]
+
 # print(results)
 # question_data = [q for q in ]
 #     {
