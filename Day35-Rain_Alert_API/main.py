@@ -30,18 +30,10 @@ weather_data = response.json()
 # print(weather_data['hourly'][:6])
 
 if will_it_rain(weather_data['hourly'][:12]):
-    body = "Bring an umbrella"
-else:
-    body = "No need for an umbrella, today"
-    # print("Bring an umbrella")
-
-    # print(data['hourly'][i]["weather"][0]["id"])
-
-message = client.messages \
+    message = client.messages \
                 .create(
-                     body=body,
+                     body="Bring an umbrella ☂",
                      from_=FROM_NUMBER,
                      to=TO_NUMBER
                  )
-
-print(message.sid)
+    print(message.status)
