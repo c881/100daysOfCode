@@ -1,4 +1,6 @@
 import requests
+import os
+from twilio.rest import Client
 from env_params import *
 
 params = {
@@ -7,6 +9,12 @@ params = {
     "exclude":"current,minutely,daily,alerts",
     "appid": API_KEY
     }
+# Find your Account SID and Auth Token at twilio.com/console
+# and set the environment variables. See http://twil.io/secure
+account_sid = TWILIO_ACCOUNT_SID
+auth_token = TWILIO_AUTH_TOKEN
+client = Client(account_sid, auth_token)
+
 
 def will_it_rain(data):
     for hour in data:
@@ -19,7 +27,19 @@ response = requests.get(url=ONEPOINT_ENDPOINT, params=params)
 response.raise_for_status()
 weather_data = response.json()
 # print(weather_data['hourly'][:6])
+
 if will_it_rain(weather_data['hourly'][:12]):
+    body = "Bring an umbrella"
+else:
+    body = "No need for an umbrella, today"
     print("Bring an umbrella")
 
     # print(data['hourly'][i]["weather"][0]["id"])
+
+message = client.messages \
+                .create(
+                     body=body,
+                     from_='+16692806558',
+                     to='+972506911869'
+                 )
+print(message.sid)
