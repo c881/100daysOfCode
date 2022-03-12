@@ -4,9 +4,9 @@ from twilio.rest import Client
 from env_params import *
 
 params = {
-    "lat":31.9274384,
-    "lon":34.8060315,
-    "exclude":"current,minutely,daily,alerts",
+    "lat": 31.9274384,
+    "lon": 34.8060315,
+    "exclude": "current,minutely,daily,alerts",
     "appid": API_KEY
     }
 # Find your Account SID and Auth Token at twilio.com/console
@@ -23,6 +23,7 @@ def will_it_rain(data):
             return True
     return False
 
+
 response = requests.get(url=ONEPOINT_ENDPOINT, params=params)
 response.raise_for_status()
 weather_data = response.json()
@@ -32,14 +33,15 @@ if will_it_rain(weather_data['hourly'][:12]):
     body = "Bring an umbrella"
 else:
     body = "No need for an umbrella, today"
-    print("Bring an umbrella")
+    # print("Bring an umbrella")
 
     # print(data['hourly'][i]["weather"][0]["id"])
 
 message = client.messages \
                 .create(
                      body=body,
-                     from_='+16692806558',
-                     to='+972506911869'
+                     from_=FROM_NUMBER,
+                     to=TO_NUMBER
                  )
+
 print(message.sid)
