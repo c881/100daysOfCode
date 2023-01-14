@@ -27,4 +27,4 @@ sunrise_hour = data["results"]["sunrise"].split("T")[1].split(":")[0]
 sunset_hour = data["results"]["sunset"].split("T")[1].split(":")[0]
 print(f'sunrise: {sunrise_hour}\nsubset: {sunset_hour}')
 # print(time.)
-print(datetime.now.hour)
+print(datetime.now().hour)
